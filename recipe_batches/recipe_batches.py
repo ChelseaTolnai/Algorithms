@@ -2,9 +2,17 @@
 
 import math
 
-def recipe_batches(recipe, ingredients):
-  pass 
-
+def recipe_batches(recipe, ingredients):        #Overall - O(n)
+  batches = math.inf                                      #O(1)
+  for k, v in recipe.items():                             #O(n)
+    if ingredients.get(k):                                #O(1)
+      current_item_batches = ingredients[k] // v          #O(1)
+      if current_item_batches < batches:
+        batches = current_item_batches                    #O(1)
+    else:
+      return 0                                            #O(1)
+  return batches                                          #O(1)
+      
 
 if __name__ == '__main__':
   # Change the entries of these dictionaries to test 

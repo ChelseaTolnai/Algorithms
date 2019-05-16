@@ -1,9 +1,40 @@
 #!/usr/bin/python
 
 import argparse
+# import math
 
-def find_max_profit(prices):
-  pass
+def find_max_profit(prices):                                            # Overall - O(n)
+    current_min_price_so_far = prices[0]                                          # O(1)
+    max_profit_so_far = prices[1] - current_min_price_so_far                      # O(1)
+
+    for i in prices[1:]:                                                          # O(n)
+        max_profit_so_far = max(i - current_min_price_so_far, max_profit_so_far)  # O(1)
+        current_min_price_so_far = min(i, current_min_price_so_far)               # O(1)
+
+    return max_profit_so_far                                                      # O(1)
+
+# def find_max_profit(prices):  # Overall - O(n^2)
+#   profit = -math.inf                    # O(1)
+#   while len(prices) >= 2:               # O(n)
+#     sell = prices[0]                    # O(1)
+#     buy = max(prices[1:])               # O(n)
+#     if buy - sell > profit:
+#         profit = buy - sell             # O(1)
+#     prices = prices[1:]                 # O(1)
+#   return profit                         # O(1)
+
+# def find_max_profit(prices):        #Overall - O(n)
+#   buy = max(prices[1:])                       #O(n)
+#   sell = min(prices[:prices.index(buy)])      #O(n)
+#   profit = buy - sell                         #O(1)
+#   if profit > 0:                              
+#     return profit                             #O(1)
+#   else:
+#     for i in range(len(prices)-1):            #O(n)
+#       current_profit = prices[i+1]-prices[i]  #O(1)
+#       if current_profit > profit:             
+#         profit = current_profit               #O(1)
+#     return profit                             #O(1)
 
 
 if __name__ == '__main__':
